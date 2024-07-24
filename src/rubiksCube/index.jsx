@@ -4,11 +4,10 @@ import World from './classes/world'
 
 export default function RubiksCube() {
     const canvasRef = useRef();
-    // const CSS2DRef = useRef();
 
     useEffectOnce(() => {
         const initializeWorld = () => {
-        //  CSS2DRef
+            //  CSS2DRef
             const world = new World({ canvasRef });
             const renderer = world.init();
 
