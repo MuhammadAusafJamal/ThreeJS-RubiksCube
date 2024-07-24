@@ -8,12 +8,12 @@ import { Cube } from "./cube.js";
 
 export default class World {
     constructor({ canvasRef }) {
-        this.ref = canvasRef;
+        this.canvasRef = canvasRef;
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(
             CAMERA_FOV, ASPECT_RATIO, CAMERA_NEAR, CAMERA_FAR
         );
-        this.renderer = new THREE.WebGLRenderer({ canvas: this.ref.current, antialias: true });
+        this.renderer = new THREE.WebGLRenderer({ canvas: this.canvasRef.current, antialias: true });
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
         // Renderer and Controls
@@ -37,6 +37,7 @@ export default class World {
 
         const cube = new Cube()
         cube.start(this.scene);
+        cube.rotateAnimation()
     }
 
     handleRendererConfigurations = () => {
