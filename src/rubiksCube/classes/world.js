@@ -4,10 +4,13 @@ import {
     ENABLE_DAMPING, DAMPING_FACTOR, MIN_DISTANCE, MAX_DISTANCE, ENABLE_PAN, CAMERA_INITIAL_POSITION, CAMERA_INITIAL_LOOK_AT
 } from '../constants/common-constants.js';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { Cube } from "./cube.js";
+import { RubiksCube } from "./rubiksCube.js";
+import { Reflector } from 'three/examples/jsm/objects/Reflector'
+
 
 export default class World {
     constructor({ canvasRef }) {
+
         this.canvasRef = canvasRef;
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(
@@ -26,18 +29,20 @@ export default class World {
 
     init = () => {
         // Scene
-        this.scene.background = new THREE.Color(0xAF8500);
+        // this.scene.background = new THREE.Color(0xAF8500);
 
 
         // Camera
-        this.camera.position.set(...CAMERA_INITIAL_POSITION);
-        this.camera.lookAt(...CAMERA_INITIAL_LOOK_AT);
+        this.camera.position.set(10, 6, 10);
+        this.camera.lookAt(5, 5, 5);
 
 
 
-        const cube = new Cube()
-        cube.start(this.scene);
-        cube.rotateAnimation()
+        //Rubiks Cube Class
+        const rubiksCube = new RubiksCube()
+        rubiksCube.create(this.scene);
+        this.scene.add(rubiksCube.rubiksCubeGroup)
+        rubiksCube.rotateAnimation(this.scene)
     }
 
     handleRendererConfigurations = () => {
@@ -56,8 +61,6 @@ export default class World {
         this.controls.enableDamping = ENABLE_DAMPING;
         this.controls.enablePan = ENABLE_PAN;
         this.controls.dampingFactor = DAMPING_FACTOR;
-        // this.controls.maxPolarAngle = MAX_POLAR_ANGLE;
-        // this.controls.minPolarAngle = MIN_POLAR_ANGLE;
     }
 
     handleResponsiveness = () => {
