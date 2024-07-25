@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { gsap } from "gsap";
-import { Cubelets } from './cublets';
+import { Cubelets } from './cublets.js'
 
 export class RubiksCube {
     constructor() {
@@ -11,9 +11,10 @@ export class RubiksCube {
         this.disableButtons = null
     }
 
-    create(scene) {
+    create() {
         const gap = 5
         this.cubes = [
+
             // // Front 2x2.
             // new Cubelets(-gap, gap, gap),
             // new Cubelets(gap, gap, gap),
@@ -25,7 +26,6 @@ export class RubiksCube {
             // new Cubelets(gap, gap, -gap),
             // new Cubelets(-gap, -gap, -gap),
             // new Cubelets(gap, -gap, -gap),
-
 
             // Front face.
             new Cubelets(-gap, gap, gap),
@@ -59,21 +59,13 @@ export class RubiksCube {
             new Cubelets(-gap, -gap, -gap),
             new Cubelets(0, -gap, -gap),
             new Cubelets(gap, -gap, -gap),
-
-
         ]
+
         this.cubes.forEach((cube) => {
             this.rubiksCubeGroup.add(cube.cubletsGroup);
         });
         this.selectedCube = this.cubes[0];
-
-
-
-        const helper = new THREE.AxesHelper(10);
-        scene.add(helper);
-
     }
-
 
     rotateAroundWorldAxis(cubeGroup, axis) {
         this.disableButtons();
@@ -118,7 +110,6 @@ export class RubiksCube {
     cubeInSameZ(c1, c2) {
         return Math.abs(c1.cubletsGroup.position.z - c2.cubletsGroup.position.z) < this.epsilon;
     }
-
 
     rotateAnimation() {
         this.disableButtons = () => {
@@ -252,8 +243,4 @@ export class RubiksCube {
         bottomBtnRight.addEventListener('click', bottomRight);
         bottomBtnLeft.addEventListener('click', bottomLeft);
     }
-
-
-
-
 }
