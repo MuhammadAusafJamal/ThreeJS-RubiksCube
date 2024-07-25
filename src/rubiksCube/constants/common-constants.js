@@ -40,8 +40,8 @@ export const ENABLE_DAMPING = true;
 export const ENABLE_PAN = true;
 export const DAMPING_FACTOR = 0.05;
 export const SCREEN_SPACE_PANNING = false;
-export const MIN_DISTANCE = 20;
-export const MAX_DISTANCE = 100;
+export const MIN_DISTANCE = 40;
+export const MAX_DISTANCE = 70;
 export const MIN_POLAR_ANGLE = PI / 9;
 export const MAX_POLAR_ANGLE = PI / 3;
 
