@@ -113,25 +113,11 @@ export class RubiksCube {
 
     rotateAnimation() {
         this.disableButtons = () => {
-            leftBtnBack.disabled = true;
-            leftBtnFront.disabled = true;
-            topBtnRight.disabled = true;
-            topBtnLeft.disabled = true;
-            rightBtnFront.disabled = true;
-            rightBtnBack.disabled = true;
-            bottomBtnRight.disabled = true;
-            bottomBtnLeft.disabled = true;
+            leftBtnBack.disabled = leftBtnFront.disabled = topBtnRight.disabled = topBtnLeft.disabled = rightBtnFront.disabled = rightBtnBack.disabled = bottomBtnRight.disabled = bottomBtnLeft.disabled = true;
         };
 
         this.enableButtons = () => {
-            leftBtnBack.disabled = false;
-            leftBtnFront.disabled = false;
-            topBtnRight.disabled = false;
-            topBtnLeft.disabled = false;
-            rightBtnFront.disabled = false;
-            rightBtnBack.disabled = false;
-            bottomBtnRight.disabled = false;
-            bottomBtnLeft.disabled = false;
+            leftBtnBack.disabled = leftBtnFront.disabled = topBtnRight.disabled = topBtnLeft.disabled = rightBtnFront.disabled = rightBtnBack.disabled = bottomBtnRight.disabled = bottomBtnLeft.disabled = false;
         };
 
         // Create buttons
@@ -142,7 +128,6 @@ export class RubiksCube {
             button.style.marginTop = marginTop;
             return button;
         };
-
         const leftBtnBack = createButton('Rotate Left Back', '0px');
         const leftBtnFront = createButton('Rotate Left Front', '20px');
         const topBtnRight = createButton('Rotate Top Right', '40px');
@@ -153,14 +138,19 @@ export class RubiksCube {
         const bottomBtnLeft = createButton('Rotate Bottom Left', '140px');
 
         // Add buttons to the DOM
-        document.body.appendChild(leftBtnBack);
-        document.body.appendChild(leftBtnFront);
-        document.body.appendChild(topBtnLeft);
-        document.body.appendChild(topBtnRight);
-        document.body.appendChild(rightBtnBack);
-        document.body.appendChild(rightBtnFront);
-        document.body.appendChild(bottomBtnRight);
-        document.body.appendChild(bottomBtnLeft);
+        this.buttons = [
+            leftBtnBack,
+            leftBtnFront,
+            topBtnLeft,
+            topBtnRight,
+            rightBtnBack,
+            rightBtnFront,
+            bottomBtnRight,
+            bottomBtnLeft
+        ]
+        this.buttons.forEach((button) => {
+            document.body.appendChild(button);
+        });
 
         // Rotate functions
         const leftFront = () => {
