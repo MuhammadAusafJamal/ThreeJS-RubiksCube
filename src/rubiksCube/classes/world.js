@@ -1,11 +1,11 @@
 import * as THREE from "three";
 import {
     INNER_HEIGHT, INNER_WIDTH, CAMERA_NEAR, CAMERA_FAR, ASPECT_RATIO, CAMERA_FOV,
-    ENABLE_DAMPING, DAMPING_FACTOR, MIN_DISTANCE, MAX_DISTANCE, ENABLE_PAN, CAMERA_INITIAL_POSITION, CAMERA_INITIAL_LOOK_AT
+    ENABLE_DAMPING, DAMPING_FACTOR, MIN_DISTANCE, MAX_DISTANCE, ENABLE_PAN
 } from '../constants/common-constants.js';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RubiksCube } from "./rubiksCube.js";
-import { Reflector } from 'three/examples/jsm/objects/Reflector'
+// import { Reflector } from 'three/examples/jsm/objects/Reflector'
 
 
 export default class World {
@@ -30,17 +30,14 @@ export default class World {
     init = () => {
         // Scene
         // this.scene.background = new THREE.Color(0xAF8500);
-
-
+        
         // Camera
         this.camera.position.set(10, 6, 10);
         this.camera.lookAt(5, 5, 5);
 
-
-
         //Rubiks Cube Class
         const rubiksCube = new RubiksCube()
-        rubiksCube.create(this.scene);
+        rubiksCube.create();
         this.scene.add(rubiksCube.rubiksCubeGroup)
         rubiksCube.rotateAnimation(this.scene)
     }
